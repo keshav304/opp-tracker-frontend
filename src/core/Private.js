@@ -45,7 +45,8 @@ const Private = ({ history }) => {
       }
     };
     loadProfile();
-  }, [history, values]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { role, name, email, password, buttonText } = values;
 

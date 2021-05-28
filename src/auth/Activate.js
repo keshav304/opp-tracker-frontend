@@ -22,7 +22,8 @@ const Activate = ({ match }) => {
     if (token) {
       setValues({ ...values, name, token });
     }
-  }, [values, match.params.token]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [match.params.token]);
 
   const { name, token } = values;
 

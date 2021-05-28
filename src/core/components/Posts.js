@@ -24,7 +24,8 @@ const Posts = (props) => {
       }
     };
     getPosts();
-  }, [posts]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return !posts.length ? (
     <CircularProgress />
   ) : (
