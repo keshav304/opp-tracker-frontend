@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import Layout from "../Layout";
 import { isAuth } from "../../auth/Helpers";
 
-dotenv.config()
+dotenv.config();
 // import { authenticate, isAuth } from "./Helpers";
 
 const Createpost = (props) => {
@@ -39,35 +39,50 @@ const Createpost = (props) => {
 
   const handleChange = (field) => (event) => {
     //check the field whether it is name,email,password and change state accordingly
+
     setValues({ ...values, [field]: event.target.value });
   };
 
   const clickSubmit = (event) => {
     event.preventDefault();
-    console.log(values);
-    setValues({ ...values, buttonText: "Submitting" });
-    axios({
-      method: "POST",
-      url: `${process.env.REACT_APP_DEPLOYED_API}/post`,
-      data: {userId, name, description, detailsLink, registrationLink, category },
-    })
-      .then((response) => {
-        setValues({
-          ...values,
-          name: "",
-          description: "",
-          detailsLink: "",
-          registrationLink: "",
-          category: "",
-          buttonText: "submit",
-        });
-        history.push('/')
+    if (description.length < 20) {
+      toast.error("description is to short");
+      return;
+    } else if (description.length > 60) {
+      toast.error("description can be shorter");
+      return;
+    } else {
+      setValues({ ...values, buttonText: "Submitting" });
+      axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_DEPLOYED_API}/post`,
+        data: {
+          userId,
+          name,
+          description,
+          detailsLink,
+          registrationLink,
+          category,
+        },
       })
-      .catch((error) => {
-        console.log("post submittion error", error.response.data);
-        setValues({ ...values, buttonText: "Submit" });
-        toast.error(error.response.data.error);
-      });
+        .then((response) => {
+          setValues({
+            ...values,
+            name: "",
+            description: "",
+            detailsLink: "",
+            registrationLink: "",
+            category: "",
+            buttonText: "submit",
+          });
+          history.push("/");
+        })
+        .catch((error) => {
+          console.log("post submittion error", error.response.data);
+          setValues({ ...values, buttonText: "Submit" });
+          toast.error(error.response.data.error);
+        });
+    }
   };
 
   const createPostForm = () => (
@@ -79,6 +94,7 @@ const Createpost = (props) => {
           value={name}
           type="text"
           className="form-control"
+          required
         />
       </div>
       <div className="form-group my-2">
@@ -89,6 +105,7 @@ const Createpost = (props) => {
           value={description}
           className="form-control"
           rows="3"
+          required
         />
       </div>
       <div className="form-group my-2">
@@ -98,6 +115,7 @@ const Createpost = (props) => {
           value={detailsLink}
           type="url"
           className="form-control"
+          required
         />
       </div>
       <div className="form-group  my-2">
@@ -112,7 +130,17 @@ const Createpost = (props) => {
       <div className="form-group  my-2">
         <label className="text-dark fs-5 mb-1 me-4 ">Category</label>
 
-        <select name="category" style={{width:"100%",height:"42px", border:"none", borderRadius:".25rem", lineHeight: "1.5"}} onChange={handleCategoryChange}>
+        <select
+          name="category"
+          style={{
+            width: "100%",
+            height: "42px",
+            border: "none",
+            borderRadius: ".25rem",
+            lineHeight: "1.5",
+          }}
+          onChange={handleCategoryChange}
+        >
           <option value="Coding">Coding</option>
           <option value="interships">Interships</option>
           <option value="openSource">Open Source </option>

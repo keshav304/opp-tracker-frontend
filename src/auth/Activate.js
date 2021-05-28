@@ -22,9 +22,9 @@ const Activate = ({ match }) => {
     if (token) {
       setValues({ ...values, name, token });
     }
-  }, []);
+  }, [values, match.params.token]);
 
-  const { name, token, show } = values;
+  const { name, token } = values;
 
   const clickSubmit = (event) => {
     event.preventDefault();

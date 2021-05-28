@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { isAuth, signout } from "../auth/Helpers";
 
-import { ToastProvider, useToasts } from 'react-toast-notifications';
+import { ToastProvider } from 'react-toast-notifications';
 
 
 const Layout = ({ children, match, history }) => {

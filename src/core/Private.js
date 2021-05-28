@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useDebugValue } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import dotenv from "dotenv";
 
 import Layout from "../core/Layout";
-import { authenticate, getCookie, isAuth, signout, updateUser } from "../auth/Helpers";
+import { getCookie, isAuth, signout, updateUser } from "../auth/Helpers";
 
 dotenv.config();
 
@@ -18,33 +18,34 @@ const Private = ({ history }) => {
     buttonText: "Submit",
   });
 
-  const loadProfile = async () => {
-    try {
-      // fet the logged in user data
-      const { data: userDetails } = await axios.get(
-        `${process.env.REACT_APP_DEPLOYED_API}/user/${isAuth()._id}`,
-        { headers: { Authorization: `Bearer ${getCookie("token")}` } }
-      );
 
-      const { name, role, email } = userDetails;
-
-      // update the user state with fetched data
-      setValues({ ...values, role, name, email });
-    } catch (error) {
-      console.log(error.message);
-
-      // if token expired then singout the user and push them to home page
-      if (error.response.status === 401) {
-        signout(() => {
-          history.push("/");
-        });
-      }
-    }
-  };
 
   useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        // fet the logged in user data
+        const { data: userDetails } = await axios.get(
+          `${process.env.REACT_APP_DEPLOYED_API}/user/${isAuth()._id}`,
+          { headers: { Authorization: `Bearer ${getCookie("token")}` } }
+        );
+  
+        const { name, role, email } = userDetails;
+  
+        // update the user state with fetched data
+        setValues({ ...values, role, name, email });
+      } catch (error) {
+        console.log(error.message);
+  
+        // if token expired then singout the user and push them to home page
+        if (error.response.status === 401) {
+          signout(() => {
+            history.push("/");
+          });
+        }
+      }
+    };
     loadProfile();
-  }, []);
+  }, [history, values]);
 
   const { role, name, email, password, buttonText } = values;
 
