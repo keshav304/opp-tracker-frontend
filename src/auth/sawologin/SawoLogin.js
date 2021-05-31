@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useCallback } from "react";
 import Sawo from "sawo";
 import styles from "./styles"
 import axios from "axios";
@@ -34,32 +34,32 @@ const SawoLogin = ({ history})=> {
 
   // Sawo: 
   // OnSuccess Callback method
+  const onSuccessLogin = useCallback(
+    async(payload) => {
+      const email = payload.identifier
 
-  const onSuccessLogin = async(payload) => {
-    const email = payload.identifier
-
-    axios({
-      method: "POST",
-      url: `${process.env.REACT_APP_DEPLOYED_API}/sawo/signin`,
-      data: { email},
-    })
-      .then((response) => {
-        
-        // save the response {user, token} in local storage/cookie
-        authenticate(response,()=>{
-          console.log("signin successful")
-        })
-        isAuth() && isAuth().role === "admin"? history.push("/admin"): history.push("/");
-
+      axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_DEPLOYED_API}/sawo/signin`,
+        data: { email},
       })
-      .catch((error) => {
-        console.log("signin error", error);
-        // setValues({ ...values, buttonText: "Submit" });
-        // toast.error(error.response.data.error);
-      });
-      
-    
-  };
+        .then((response) => {
+          
+          // save the response {user, token} in local storage/cookie
+          authenticate(response,()=>{
+            console.log("signin successful")
+          })
+          isAuth() && isAuth().role === "admin"? history.push("/admin"): history.push("/");
+  
+        })
+        .catch((error) => {
+          console.log("signin error", error);
+          // setValues({ ...values, buttonText: "Submit" });
+          // toast.error(error.response.data.error);
+        });
+    },
+    [history]
+  );
 
 
   return (
