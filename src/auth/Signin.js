@@ -98,6 +98,12 @@ const Signin = ({ history }) => {
         {signinForm()}
         <Google text="Login With Google" informParent={informParent}/>
         <div className="d-flex justify-content-center flex-column mt-5">
+        <Link to="/auth/sawo/signin" className="text-center text-decoration-none">
+            
+            <h4 className=" btn btn-warning ">
+              Passwordless login with SAWO
+            </h4>
+          </Link>
           <Link to="/signup" className="text-center text-decoration-none">
             
             <h4 className=" btn btn-outline-info ">
