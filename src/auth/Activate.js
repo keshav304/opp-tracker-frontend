@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,17 +16,14 @@ const Activate = ({ match }) => {
     token: "",
     show: true,
   });
-  const handleAcctivation = useCallback(() => {
+  useEffect(() => {
     const token = match.params.token;
     let { name } = jwt.decode(token);
     if (token) {
       setValues({ ...values, name, token });
     }
-  },[match.params.token, values])
- 
-  useEffect(() => {
-    handleAcctivation()
-  }, [handleAcctivation]);
+  
+  }, [match.params.token, values]);
 
   const { name, token } = values;
 
