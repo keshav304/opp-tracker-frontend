@@ -18,7 +18,9 @@ const Activate = ({ match }) => {
   });
   useEffect(() => {
     const token = match.params.token;
+    console.log(token)
     let { name } = jwt.decode(token);
+    console.log(name)
     if (token) {
       setValues({ ...values, name, token });
     }
