@@ -6,33 +6,7 @@ import { authenticate, isAuth } from "../Helpers";
 
 
 const SawoLogin = ({ history})=> {
-
-  useEffect(() => {
-
-    // Sawo Configuration, required to render form in the container
-    // onSuccess callback will get invoke, after successful login
-
-    const sawoConfig = {
-      // should be same as the id of the container
-      containerID: "sawo-container",
-      // can be one of 'email' or 'phone_number_sms'
-      identifierType: "email",
-      // Add the API key
-      apiKey: `${process.env.REACT_APP_SAWO_API_KEY}`,
-      // Add a callback here to handle the payload sent by sdk
-      onSuccess: onSuccessLogin
-    };
-
-    // creating instance
-    let sawo = new Sawo(sawoConfig)
-
-    // calling method to show form
-    sawo.showForm();
-  }, [])
-
-
-
-  // Sawo: 
+   // Sawo: 
   // OnSuccess Callback method
   const onSuccessLogin = useCallback(
     async(payload) => {
@@ -60,6 +34,33 @@ const SawoLogin = ({ history})=> {
     },
     [history]
   );
+
+  useEffect(() => {
+
+    // Sawo Configuration, required to render form in the container
+    // onSuccess callback will get invoke, after successful login
+
+    const sawoConfig = {
+      // should be same as the id of the container
+      containerID: "sawo-container",
+      // can be one of 'email' or 'phone_number_sms'
+      identifierType: "email",
+      // Add the API key
+      apiKey: `${process.env.REACT_APP_SAWO_API_KEY}`,
+      // Add a callback here to handle the payload sent by sdk
+      onSuccess: onSuccessLogin
+    };
+
+    // creating instance
+    let sawo = new Sawo(sawoConfig)
+
+    // calling method to show form
+    sawo.showForm();
+  }, [onSuccessLogin])
+
+
+
+ 
 
 
   return (
