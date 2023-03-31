@@ -30,6 +30,7 @@ const Savedpost = (props) => {
 
   useEffect(() => {
     getPosts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const informParent = (data) => {

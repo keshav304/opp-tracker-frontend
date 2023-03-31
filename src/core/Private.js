@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useDebugValue } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import dotenv from "dotenv";
 
 import Layout from "../core/Layout";
-import { authenticate, getCookie, isAuth, signout, updateUser } from "../auth/Helpers";
+import { getCookie, isAuth, signout, updateUser } from "../auth/Helpers";
 
 dotenv.config();
 
@@ -44,6 +44,7 @@ const Private = ({ history }) => {
 
   useEffect(() => {
     loadProfile();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { role, name, email, password, buttonText } = values;

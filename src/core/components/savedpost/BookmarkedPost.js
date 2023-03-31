@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
 import "./style.css";
 import dotenv from "dotenv";
 import { getCookie, isAuth } from "../../../auth/Helpers";
 import axios from "axios";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { ToastProvider, useToasts } from "react-toast-notifications";
 dotenv.config();
 
 const BookmarkedPost = ({ post, informParent }) => {

@@ -22,9 +22,10 @@ const Activate = ({ match }) => {
     if (token) {
       setValues({ ...values, name, token });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { name, token, show } = values;
+  const { name, token } = values;
 
   const clickSubmit = (event) => {
     event.preventDefault();

@@ -17,6 +17,7 @@ const ResetPassword = ({match,history}) => {
   useEffect(()=>{
     const  token = match.params.token;
     setValues({...values, token});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   const { token, newPassword,confirmPassword, buttonText } = values;
     console.log( { token, newPassword,confirmPassword, buttonText })
