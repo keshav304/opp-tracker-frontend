@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import "./style.css";
 import dotenv from "dotenv";
@@ -7,7 +7,7 @@ import { useHistory } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import {  useToasts } from "react-toast-notifications";
+import { ToastProvider, useToasts } from "react-toast-notifications";
 dotenv.config();
 
 const Post = ({ post }) => {

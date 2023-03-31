@@ -18,16 +18,13 @@ const Activate = ({ match }) => {
   });
   useEffect(() => {
     const token = match.params.token;
-    console.log(token)
     let { name } = jwt.decode(token);
-    console.log(name)
     if (token) {
       setValues({ ...values, name, token });
     }
-  
-  }, [match.params.token, values]);
+  }, []);
 
-  const { name, token } = values;
+  const { name, token, show } = values;
 
   const clickSubmit = (event) => {
     event.preventDefault();

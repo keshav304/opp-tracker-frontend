@@ -9,22 +9,19 @@ dotenv.config();
 
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
-
+  const getPosts = async () => {
+    try {
+      const userPosts = await axios.get(
+        `${process.env.REACT_APP_DEPLOYED_API}/post`
+      );
+      setPosts(userPosts.data.reverse()); // set State
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const userPosts = await axios.get(
-          `${process.env.REACT_APP_DEPLOYED_API}/post`
-        );
-        console.log(posts)
-        setPosts(userPosts.data.reverse()); // set State
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
     getPosts();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return !posts.length ? (
     <CircularProgress />

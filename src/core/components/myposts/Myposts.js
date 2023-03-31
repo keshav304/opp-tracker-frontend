@@ -15,25 +15,25 @@ const Myposts = (props) => {
   const [myPosts, setMyPosts] = useState([]);
 
   const userId = isAuth()._id;
+  console.log({userId})
+  const getPosts = async () => {
+    try {
+      const posts = await axios.get(
+        `${process.env.REACT_APP_DEPLOYED_API}/post/myposts/${userId}`,
+        {
+          headers: { Authorization: `Bearer ${getCookie("token")}` }
+        }
+      );
 
+     setMyPosts(posts.data.reverse())
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const posts = await axios.get(
-          `${process.env.REACT_APP_DEPLOYED_API}/post/myposts/${userId}`,
-          {
-            headers: { Authorization: `Bearer ${getCookie("token")}` }
-          }
-        );
-  
-       setMyPosts(posts.data.reverse())
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getPosts();
-  }, [userId]);
+  }, []);
 
 
 

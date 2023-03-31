@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { isAuth, signout } from "../auth/Helpers";
 
-import { ToastProvider } from 'react-toast-notifications';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 
 
 const Layout = ({ children, match, history }) => {
@@ -19,7 +19,7 @@ const Layout = ({ children, match, history }) => {
       <ul className=" d-flex nav nav-tabs bg-light">
         <li className="nav-item flex-grow-1 ">
           <Link to="/" className=" nav-link my-2 fs-5 text-dark" >
-            Opportunity Tracker
+            Sathyabama Event Tracker
           </Link>
         </li>
 

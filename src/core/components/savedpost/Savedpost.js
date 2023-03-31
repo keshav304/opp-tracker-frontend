@@ -13,25 +13,24 @@ dotenv.config();
 const Savedpost = (props) => {
   const [savedPosts, setSavedPosts] = useState([]);
   const id = isAuth()._id;
+  const getPosts = async () => {
+    try {
+      const bookmarkedPosts = await axios.get(
+        `${process.env.REACT_APP_DEPLOYED_API}/post/bookmarks/${id}`,
+        {
+          headers: { Authorization: `Bearer ${getCookie("token")}` }
+        }
+      );
 
+      setSavedPosts(bookmarkedPosts.data.reverse());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const bookmarkedPosts = await axios.get(
-          `${process.env.REACT_APP_DEPLOYED_API}/post/bookmarks/${id}`,
-          {
-            headers: { Authorization: `Bearer ${getCookie("token")}` }
-          }
-        );
-  
-        setSavedPosts(bookmarkedPosts.data.reverse());
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getPosts();
-  }, [id]);
+  }, []);
 
   const informParent = (data) => {
     setSavedPosts(data)

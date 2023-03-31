@@ -56,7 +56,7 @@ export const authenticate = (response,next)=> {
 
 // access user info fron local storage
 export const isAuth = ()=>{ 
-    if (window !== 'undefined'){
+    if (window != 'undefined'){
         const cookieChecked = getCookie('token');
         
         if(cookieChecked){

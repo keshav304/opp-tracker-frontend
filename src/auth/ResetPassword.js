@@ -17,7 +17,7 @@ const ResetPassword = ({match,history}) => {
   useEffect(()=>{
     const  token = match.params.token;
     setValues({...values, token});
-  },[match.params.token, values])
+  },[])
   const { token, newPassword,confirmPassword, buttonText } = values;
     console.log( { token, newPassword,confirmPassword, buttonText })
   const handleChange = (field) => (event) => {
