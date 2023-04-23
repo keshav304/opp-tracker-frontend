@@ -16,9 +16,10 @@ const Layout = ({ children, match, history }) => {
 
   const nav = () => {
     return (
-      <ul className=" d-flex nav nav-tabs bg-light">
+      <div className=" d-flex nav nav-tabs border-bottom-0"  
+      >
         <li className="nav-item flex-grow-1 ">
-          <Link to="/" className=" nav-link my-2 fs-5 text-dark" >
+          <Link to="/" className=" nav-link my-2 fs-5" style={{ color: "#F2F2F2"}}>
             Sathyabama Event Tracker
           </Link>
         </li>
@@ -85,15 +86,14 @@ const Layout = ({ children, match, history }) => {
             </Link>
           </li>
         )}
-      </ul>
+      </div>
     );
   };
   return (
     <ToastProvider>
-    <div >
+    <div style={{  backgroundColor: "#0F2C3F",height:"100vh"}} >
       {nav()}
-      <div 
-      >{children}</div>
+      <div style={{  backgroundColor: "#0F2C3F"}}>{children}</div>
     </div>
     </ToastProvider>
   );

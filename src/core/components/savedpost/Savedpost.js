@@ -45,7 +45,7 @@ const Savedpost = (props) => {
             <Sidebar />
           </div>
 
-          <div className="col-6">
+          <div className="col-9">
           <h1>No bookmarks available</h1>
           </div>
         </div>
@@ -59,7 +59,7 @@ const Savedpost = (props) => {
             <Sidebar />
           </div>
 
-          <div className="col-6">
+          <div className="col-9">
             <Pagination
               data={savedPosts}
               pageLimit={Math.ceil(savedPosts.length / 3)}

@@ -14,11 +14,14 @@ dotenv.config()
 
 const Createpost = (props) => {
   const [values, setValues] = useState({
-    name: "",
     description: "",
     detailsLink: "",
     registrationLink: "",
     category: "",
+    eventname: "",
+    eventorganiser: "",
+    eventtime: "",
+    place:"",
     buttonText: "submit",
   });
   const history = useHistory();
@@ -26,17 +29,21 @@ const Createpost = (props) => {
   const [option, setOption] = useState();
   const userId = isAuth()._id;
   function handleCategoryChange(event) {
-    setOption(event.target.value);
-    setValues({ ...values, category: option });
+    // console.log(event.target.value)
+    // setOption(event.target.value);
+    setValues({ ...values, category: event.target.value });
   }
 
   const {
-    name,
     description,
     detailsLink,
     registrationLink,
     category,
-    buttonText,
+    eventname,
+    eventorganiser,
+    eventtime,
+    place,
+    buttonText
   } = values;
 
   const handleChange = (field) => (event) => {
@@ -51,16 +58,29 @@ const Createpost = (props) => {
     axios({
       method: "POST",
       url: `${process.env.REACT_APP_DEPLOYED_API}/post`,
-      data: {userId, name, description, detailsLink, registrationLink, category },
+      data: {
+        userId,     
+        description,
+        detailsLink,
+        registrationLink,
+        category,
+        eventname,
+        eventorganiser,
+        eventtime,
+        place, 
+      },
     })
       .then((response) => {
         setValues({
           ...values,
-          name: "",
           description: "",
           detailsLink: "",
           registrationLink: "",
           category: "",
+          eventname: "",
+          eventorganiser: "",
+          eventtime: "",
+          place:"",
           buttonText: "submit",
         });
         history.push('/')
@@ -87,8 +107,23 @@ const Createpost = (props) => {
         <h4>POST NEW EVENT</h4>
         <p>GOOD LUCK FOR THE EVENT</p>
         <div class="form-item">
-          <input type="text" name="organiser" onChange={handleChange("name")} value={name} required/>
-          <label>Organiser:</label>
+          <input type="text" name="eventname" onChange={handleChange("eventname")} value={eventname} required/>
+          <label>Event Name</label>
+        </div>
+        <div class="form-item">
+          <input type="text" name="eventorganiser" onChange={handleChange("eventorganiser")}
+          value={eventorganiser} required/>
+          <label>Organiser</label>
+        </div>
+        <div class="form-item">
+          <input type="text" name="place" onChange={handleChange("place")}
+          value={place} required/>
+          <label>Place</label>
+        </div>
+        <div class="form-item">
+          <input type="datetime-local" name="eventtime" onChange={handleChange("eventtime")}
+          value={eventtime} required/>
+          <label>Timing</label>
         </div>
         <div class="form-item">
           <textarea type="text" name="description" onChange={handleChange("description")}
@@ -101,10 +136,11 @@ const Createpost = (props) => {
           <label> Details Link</label>
         </div>
         <div class="form-item">
-          <input type="url" name="registe" onChange={handleChange("registrationLink")}
+          <input type="url" name="register" onChange={handleChange("registrationLink")}
           value={registrationLink} required/>
           <label>Registration Link</label>
         </div>
+ 
         {/* <div className="form-item">
         <label>Category</label> */}
 

@@ -14,7 +14,8 @@ const Posts = (props) => {
       const userPosts = await axios.get(
         `${process.env.REACT_APP_DEPLOYED_API}/post`
       );
-      setPosts(userPosts.data.reverse()); // set State
+        setPosts(userPosts.data.reverse());
+       // set State
     } catch (err) {
       console.error(err.message);
     }
@@ -23,6 +24,19 @@ const Posts = (props) => {
   useEffect(() => {
     getPosts();
   }, []);
+  useEffect(() => {
+    if (props.type.length>0 && props.type!=="all") {
+      const filteredPost = posts.filter(post=>{
+        console.log(post.category,props.type,post.category!==props.type)
+        return post.category===props.type
+      })
+      console.log({filteredPost})
+      setPosts(filteredPost.reverse());
+    }
+    if (props.type.length>0 && props.type==="all") {
+      getPosts();
+    }
+  }, [posts, props.type]);
   return !posts.length ? (
     <CircularProgress />
   ) : (
@@ -30,7 +44,7 @@ const Posts = (props) => {
       data={posts}
       pageLimit={Math.ceil(posts.length / 3)}
       dataLimit={3}
-      Component = {Post} 
+      Component = {Post}
     />
   );
 };

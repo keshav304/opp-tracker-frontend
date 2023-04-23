@@ -3,12 +3,12 @@
     border-radius: 15px;
     width: fit-content;
     height: fit-content;
-    background-color:#e4e4e4 ;
     float: right;
     padding: 10px;
+    background-color: #F2F2F2;
+    color: #333333;
 }
 .new-post {
-    
     border-radius: 5px;
 }
 
@@ -18,3 +18,7 @@ li{
      cursor: pointer;
  }
 
+ul {
+    padding-inline-start: 0px;
+    text-align: center;
+}

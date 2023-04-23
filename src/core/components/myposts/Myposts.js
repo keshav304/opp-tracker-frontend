@@ -46,7 +46,7 @@ const Myposts = (props) => {
             <Sidebar />
           </div>
 
-          <div className="col-6">
+          <div className="col-9">
             <h1>You have created no posts</h1>
           </div>
         </div>
@@ -60,7 +60,7 @@ const Myposts = (props) => {
             <Sidebar />
           </div>
 
-          <div className="col-6">
+          <div className="col-9">
             <Pagination
               data={myPosts}
               pageLimit={Math.ceil(myPosts.length / 3)}
