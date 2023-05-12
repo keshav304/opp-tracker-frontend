@@ -17,7 +17,7 @@ const Signin = ({ history }) => {
     password: "",
     buttonText: "submit",
   });
-  const { email, password, buttonText } = values;
+  const { email, password } = values;
 
   const handleChange = (field) => (event) => {
     //check the field whether it is name,email,password and change state accordingly
