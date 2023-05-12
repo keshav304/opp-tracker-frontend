@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import "./style.css";
 import dotenv from "dotenv";
 import { getCookie, isAuth } from "../../../auth/Helpers";
