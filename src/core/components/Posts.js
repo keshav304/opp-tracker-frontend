@@ -9,19 +9,6 @@ dotenv.config();
 
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
-//   const getPosts = async () => {
-//     try {
-//       const userPosts = await axios.get(
-//         `${process.env.REACT_APP_DEPLOYED_API}/post`
-//       );
-//         setPosts(userPosts.data.reverse());
-//        // set State
-//     } catch (err) {
-//       console.error(err.message);
-//     }
-//   };
-  useEffect(() => {
-
   const getPosts = async () => {
     try {
       const userPosts = await axios.get(
@@ -33,6 +20,9 @@ const Posts = (props) => {
       console.error(err.message);
     }
   };
+  useEffect(() => {
+
+  const getPosts = async () => {
     getPosts();
   }, []);
   useEffect(() => {
