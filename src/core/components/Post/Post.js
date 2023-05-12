@@ -75,7 +75,7 @@ const Post = ({ post }) => {
         <i className="bi bi-clock"></i>
           <p className="mb-0 fw-bold ms-2">timing</p>
         </div>
-        <p>{post.eventtime}</p>
+        <p>{moment(post.eventtime).format('HH:mm a, DD-MM-YYYY')}</p>
       </div>
       <div className="event-name">
         <div className="d-flex">

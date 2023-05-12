@@ -4,7 +4,7 @@ import Sidebar from "./core/components/sidebar/Sidebar";
 import Layout from "./core/Layout.js";
 
 const App = () => {
-  const [type,setType] = React.useState('')
+  const [type,setType] = React.useState('all')
   return (
     <Layout>
       <div className="container  ">

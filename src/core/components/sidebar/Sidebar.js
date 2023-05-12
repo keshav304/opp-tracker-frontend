@@ -4,8 +4,7 @@ import "./styles.css";
 import { isAuth } from "../../../auth/Helpers";
 
 function Sidebar(props) {
-  const user = isAuth()
-  const isAdminOrStaff = user ? user.email.indexof("sathyabama") > -1 || user.email === "keshavjhaa2678@gmail.com" : true
+  const isAdminOrStaff = isAuth() ? isAuth().email.indexOf("sathyabama") > -1 || isAuth().email === "keshavjhaa2678@gmail.com" : true
 
   const handeClick = (e)=> {
     console.log(props,e)
@@ -30,7 +29,6 @@ function Sidebar(props) {
               <Link
                 to="/"
                 style={{ color: "#333333", textDecoration: "none" }}
-                onClick={()=>handeClick("all")}
               >
                 All posts
               </Link>

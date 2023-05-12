@@ -65,17 +65,19 @@ const Signin = ({ history }) => {
     <section>
 		<div class="login_box">
 			<div class="left">
-				<div class="top_link"><a href="#"><img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt=""/>Return home</a></div>
+				<div class="top_link"><Link to="/">
+        <img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt=""/>Return home
+        </Link></div>
 				<div class="contact">
 					<form action="">
 						<h3>SIGN IN</h3>
-						<input type="text" placeholder="USERNAME" onChange={handleChange("email")}
+						<input type="text" placeholder="EMAIL" onChange={handleChange("email")}
           value={email}/>
 						<input type="text" placeholder="PASSWORD" onChange={handleChange("password")}
           value={password}/>
 						<button class="submit" onClick={clickSubmit}>LET'S GO</button>
             
-        <Google text="Login With Google" onClick={informParent}/>
+        <Google text="Login With Google" informParent={informParent}/>
         <div className="d-flex justify-content-center flex-column mt-5">
           <Link to="/signup" className="text-center text-decoration-none">
             

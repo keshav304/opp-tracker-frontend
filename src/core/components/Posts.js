@@ -36,7 +36,7 @@ const Posts = (props) => {
     if (props.type.length>0 && props.type==="all") {
       getPosts();
     }
-  }, [posts, props.type]);
+  }, [props.type]);
   return !posts.length ? (
     <CircularProgress />
   ) : (
