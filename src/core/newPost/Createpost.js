@@ -29,7 +29,7 @@ const Createpost = (props) => {
   const [option, setOption] = useState();
   const userId = isAuth()._id;
   function handleCategoryChange(event) {
-    // console.log(event.target.value)
+    console.log(setOption)
     // setOption(event.target.value);
     setValues({ ...values, category: event.target.value });
   }
