@@ -35,6 +35,7 @@ const Posts = (props) => {
     if (props.type.length>0 && props.type==="all") {
       getPosts();
     }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.type]);
   return !posts.length ? (
     <CircularProgress />
