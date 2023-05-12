@@ -17,7 +17,7 @@ const Signup = ({history}) => {
     password: "",
     buttonText: "submit",
   });
-  const { name, email, password, buttonText } = values;
+  const { name, email, password } = values;
 
   const handleChange = (field) => (event) => {
     //check the field whether it is name,email,password and change state accordingly
