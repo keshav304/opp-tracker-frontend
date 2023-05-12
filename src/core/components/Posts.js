@@ -21,8 +21,6 @@ const Posts = (props) => {
     }
   };
   useEffect(() => {
-
-  const getPosts = async () => {
     getPosts();
   }, []);
   useEffect(() => {
