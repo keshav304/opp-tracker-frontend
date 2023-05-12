@@ -20,9 +20,8 @@ const Posts = (props) => {
 //       console.error(err.message);
 //     }
 //   };
-
   useEffect(() => {
-    const [posts, setPosts] = useState([]);
+
   const getPosts = async () => {
     try {
       const userPosts = await axios.get(
